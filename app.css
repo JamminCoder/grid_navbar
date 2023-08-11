@@ -1,0 +1,115 @@
+*, *::before, ::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 18px;
+    font-family: "Inter", sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.cta {
+    font-size: 1.2rem;
+    border-radius: 2em;
+    padding: 0.5em 1em;
+    border: 1px solid #0005;
+}
+
+.cta--bold {
+    background-color: #333;
+    color: white;
+    font-weight: bold;
+}
+
+
+.nav {
+    position: fixed;
+    width: 100vw;
+    display: grid;
+    align-items: center;
+    /* place-content: space-between; */
+
+    grid-template-columns: repeat(5, auto);
+    grid-template-rows: repeat(2, auto);
+
+    /* This is the layout for the navbar in expanded mobile mode */
+    grid-template-areas: 
+        "collapser brand brand cta cta"
+        "collapsable . . . .";
+
+    border-bottom: 1px solid #0005;
+    padding: 1.5rem 2rem;
+}
+
+.nav__collapser {
+    grid-area: collapser;
+    width: 30px;
+}
+
+.nav__brand {
+    font-weight: bold;
+    font-size: 1.2rem;
+    grid-area: brand;
+}
+
+.nav__collapsable {
+    transition: padding 500ms ease, max-height 250ms ease;
+    display: grid;
+    gap: 1rem;
+    grid-area: collapsable;
+
+    overflow: hidden;
+    max-height: 0;
+}
+
+.nav--expanded .nav__collapsable {
+    max-height: 500px;
+    margin-top: 1rem;
+    padding: 2rem 0;
+}
+
+.nav__cta {
+    grid-area: cta;
+    display: flex;
+    justify-content: center;
+
+    gap: 1rem;
+}
+
+@media (min-width: 1000px) {
+    html {
+        font-size: 1.25rem;
+    }
+
+    .nav {
+        /* Layout for nav in desktop mode */
+        grid-template-areas: "brand . collapsable collapsable cta";   
+    }
+
+    .nav__collapser {
+        display: none;
+    }
+    
+    
+    .nav__collapsable {
+        max-height: 500px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .nav--expanded .nav__collapsable {
+        padding: 0;
+        margin: 0;
+    }
+
+    .nav__cta, .nav__collapsable {
+        display: flex;
+        gap: 2rem;
+    }
+}
