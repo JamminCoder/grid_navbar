@@ -5,7 +5,7 @@
 }
 
 html {
-    font-size: 18px;
+    font-size: 14px;
     font-family: "Inter", sans-serif;
 }
 
@@ -15,7 +15,7 @@ a {
 }
 
 .cta {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     border-radius: 2em;
     padding: 0.5em 1em;
     border: 1px solid #0005;
@@ -33,18 +33,18 @@ a {
     width: 100vw;
     display: grid;
     align-items: center;
-    /* place-content: space-between; */
-
-    grid-template-columns: repeat(5, auto);
+    padding: 1.5rem 2rem;
+    
+    /* Individual value for the menu icon, then auto size the rest */
+    grid-template-columns: 60px repeat(2, auto);
     grid-template-rows: repeat(2, auto);
-
+    
     /* This is the layout for the navbar in expanded mobile mode */
     grid-template-areas: 
-        "collapser brand brand cta cta"
-        "collapsable . . . .";
-
+    "collapser brand"
+    "collapsable collapsable";
+    
     border-bottom: 1px solid #0005;
-    padding: 1.5rem 2rem;
 }
 
 .nav__collapser {
@@ -58,38 +58,37 @@ a {
     grid-area: brand;
 }
 
-.nav__collapsable {
-    transition: padding 500ms ease, max-height 250ms ease;
-    display: grid;
+.nav__cta {
+    display: flex;
     gap: 1rem;
+    margin-top: 1rem;
+}
+
+.nav__collapsable {
+    display: grid;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
     grid-area: collapsable;
 
+    /* This is what hides the content */
     overflow: hidden;
     max-height: 0;
+
+    transition: padding 500ms ease, max-height 250ms ease;
 }
 
 .nav--expanded .nav__collapsable {
-    max-height: 500px;
+    max-height: 500px; /* This is what shows the content */
     margin-top: 1rem;
     padding: 2rem 0;
 }
 
-.nav__cta {
-    grid-area: cta;
-    display: flex;
-    justify-content: center;
-
-    gap: 1rem;
-}
-
-@media (min-width: 1000px) {
-    html {
-        font-size: 1.25rem;
-    }
-
+@media (min-width: 650px) {
     .nav {
         /* Layout for nav in desktop mode */
-        grid-template-areas: "brand . collapsable collapsable cta";   
+        grid-template-columns: repeat(4, auto);
+        grid-template-areas: "brand . collapsable collapsable";   
     }
 
     .nav__collapser {
@@ -111,5 +110,12 @@ a {
     .nav__cta, .nav__collapsable {
         display: flex;
         gap: 2rem;
+        margin: 0;
+    }
+}
+
+@media (min-width: 1000px) {
+    html {
+        font-size: 1.15rem;
     }
 }
